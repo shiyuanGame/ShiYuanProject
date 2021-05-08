@@ -23,7 +23,7 @@ namespace HotUpdateScripts
         const string CANCELLED_ERROR = "Cancelled";
 
 
-        DownloadWebClient _client;
+        ShiYuanWebClient _client;
 
         bool _isDone;
 
@@ -118,7 +118,7 @@ namespace HotUpdateScripts
         {
             _isAutoDeleteWrongFile = isAutoDeleteWrongFile;
             _savePath = savePath;
-            _client = new DownloadWebClient();
+            _client = new ShiYuanWebClient();
             _client.DownloadProgressChanged += OnDownloadProgressChanged;
             _client.DownloadFileCompleted += OnDownloadFileCompleted;
             Uri uri = new Uri(url);
@@ -130,7 +130,7 @@ namespace HotUpdateScripts
             Task task = null;
             _isAutoDeleteWrongFile = isAutoDeleteWrongFile;
             _savePath = savePath;
-            _client = new DownloadWebClient();
+            _client = new ShiYuanWebClient();
             _client.DownloadProgressChanged += OnDownloadProgressChanged;
             _client.DownloadFileCompleted += OnDownloadFileCompleted;
             try

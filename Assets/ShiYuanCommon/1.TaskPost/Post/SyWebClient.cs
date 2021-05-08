@@ -6,6 +6,7 @@ using UnityEngine;
 using LitJson;
 using System;
 using System.Text;
+using HotUpdateScripts;
 /// <summary>
 /// 基础接口返回内容
 /// </summary>
@@ -34,40 +35,12 @@ public class IBaseOption
 }
 public class SyWebClient : MonoBehaviour
 {
-    public class WebClientto : WebClient
-    {
-        /// <summary>
-        /// 过期时间
-        /// </summary>
-        public int Timeout { get; set; }
 
-        public WebClientto(int timeout = 4000)
-        {
-            Timeout = timeout;
-        }
-
-        /// <summary>
-        /// 重写GetWebRequest,添加WebRequest对象超时时间
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        protected override WebRequest GetWebRequest(Uri uri)
-        {
-
-            HttpWebRequest request = base.GetWebRequest(uri) as HttpWebRequest;
-            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            request.ProtocolVersion = HttpVersion.Version10;
-            request.Timeout = Timeout;
-            request.ReadWriteTimeout = Timeout;
-            request.Proxy = null;
-            return request;
-        }
-    }
     public async Task<(bool, T)> GetHtml<T>(string url, JsonData data = null, string X_Token = null) where T : IBaseOption
     {
         bool isSendSucceed = true;
         T Data = null;
-        WebClient MyWebClient = new WebClientto();
+        var MyWebClient = new ShiYuanWebClient();
         MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
         MyWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
 
@@ -106,7 +79,7 @@ public class SyWebClient : MonoBehaviour
         bool isSendSucceed = true;
         T Data = null;
         // string pageHtml = "";
-        WebClient MyWebClient = new WebClientto();
+        var MyWebClient = new ShiYuanWebClient();
         MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
         MyWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
 
@@ -148,7 +121,7 @@ public class SyWebClient : MonoBehaviour
         // T Data = null;
         // string str
         string pageHtml = "";
-        WebClient MyWebClient = new WebClientto();
+        var MyWebClient = new ShiYuanWebClient();
         MyWebClient.Credentials = CredentialCache.DefaultCredentials;//获取或设置用于向Internet资源的请求进行身份验证的网络凭据
         MyWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
         if (!string.IsNullOrEmpty(X_Token))

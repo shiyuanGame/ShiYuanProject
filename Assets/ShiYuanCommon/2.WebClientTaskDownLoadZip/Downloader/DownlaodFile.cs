@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using HotUpdateScripts;
 using UnityEngine;
 using UnityEngine.Networking;
-using UniRx;
+// using UniRx;
 
 //下载资源文件，支持断点续传
 public class DownlaodFile : MonoBehaviour
@@ -34,8 +34,6 @@ public class DownlaodFile : MonoBehaviour
         {
             _thisLoaders = new List<Downloader>();
         }
-        float UpdateProgress = 0;
-        float timer = 0;
         string ResFilePath = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(localPath));
         if (!Directory.Exists(ResFilePath))
         {
@@ -45,31 +43,7 @@ public class DownlaodFile : MonoBehaviour
         string filePath = System.IO.Path.GetFileNameWithoutExtension(uri.LocalPath);
         var _thisLoader = new Downloader();
         _thisLoaders.Add(_thisLoader);
-        Observable.EveryUpdate()
-           .Subscribe(_ =>
-           {
-               if (_thisLoader != null)
-               {
-                   if (UpdateProgress == _thisLoader.progress)
-                   {
-                       timer += Time.deltaTime;
-                       if (timer >= 30)
-                       {
-                           timer = 0;
-                           _thisLoader.Dispose();
-                       }
-                   }
-                   else
-                   {
-                       UpdateProgress = _thisLoader.progress;
-                       timer = 0;
-                   }
-                   if (_thisLoader != null)
-                   {
-                       // Log.PrintWarning("----" + UpdateProgress);
-                   }
-               }
-           }).AddTo(this);
+
         Task tempAwait = null;
         tempAwait = _thisLoader.Downloaderr(tempServerUrl, localPath);
         while (_thisLoader != null && _thisLoader.isDone == false)
