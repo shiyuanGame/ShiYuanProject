@@ -382,7 +382,7 @@ namespace SimpleJSON
 
         public static JSONNode Parse(string jsonString)
         {
-            var stack = new Stack<JSONNode>();
+            var stack = new  Stack<JSONNode>(); 
             JSONNode ctx = null;
             var i = 0;
             var token = new StringBuilder("");

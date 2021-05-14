@@ -8,7 +8,7 @@ using System;
 using System.Text;
 using HotUpdateScripts;
 /// <summary>
-/// 基础接口返回内容
+/// 基础接口返回内容   根据服务器定义自己的基础数据结构
 /// </summary>
 [System.Serializable]
 public class IBaseOption

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Core;
 // using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using HotUpdateScripts;
 
 public class ZipTools : MonoBehaviour
 {
@@ -408,7 +409,7 @@ public class ZipTools : MonoBehaviour
         int allCount = 4;
         Task<(bool, string)> _UnZip = null;
         (bool, string) tempUnZip = (false, "");
-        var token = DownlaodFile.Instance.token;
+        var token = DownloadFile.Instance.tokenSource.Token;
         for (int i = 1; i < allCount; i++)
         {
             await Task.Run(() =>

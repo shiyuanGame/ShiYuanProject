@@ -138,6 +138,7 @@ namespace HotUpdateScripts
                 Uri uri = new Uri(url);
                 task = _client.DownloadFileTaskAsync(uri, savePath);
                 await task;
+                Dispose();
             }
             catch (System.Exception ex)
             {
@@ -178,7 +179,7 @@ namespace HotUpdateScripts
 
         }
         /// <summary>
-        /// 销毁对象，会停止所有的下载
+        /// 销毁对象，会停止所有的下载 
         /// </summary>
         public void Dispose()
         {
@@ -213,15 +214,5 @@ namespace HotUpdateScripts
                 _progress = _loadedSize / (float)_totalSize;
             }
         }
-
-        // void SuccessResponse(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
-        // {
-        //     if (e.Error == null)
-        //     {
-        //         Debug.Log("End of Download");
-        //     }
-        //     else
-        //         Debug.Log("SuccessResponse ---- Error --- \n " + e.Error);
-        // }
     }
 }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace HotUpdateScripts
 {
-
     /// <summary>
     /// 重写的WebClient类
     /// </summary>
@@ -34,28 +33,10 @@ namespace HotUpdateScripts
         {
             return await RunWithTimeout(base.UploadStringTaskAsync(address, data));
         }
-        public new async Task DownloadFileTaskAsync(string address, string data)
-        {
-            await RunWithTimeout(base.DownloadFileTaskAsync(address, data));
-        }
-        public new async Task DownloadFileTaskAsync(Uri address, string fileName)
-        {
-            await RunWithTimeout(base.DownloadFileTaskAsync(address, fileName));
-        }
         private async Task<T> RunWithTimeout<T>(Task<T> task)
         {
             if (task == await Task.WhenAny(task, Task.Delay(_timeout)))
                 return await task;
-            else
-            {
-                this.CancelAsync();
-                throw new TimeoutException();
-            }
-        }
-        private async Task RunWithTimeout(Task task)
-        {
-            if (task == await Task.WhenAny(task, Task.Delay(_timeout)))
-                await task;
             else
             {
                 this.CancelAsync();
