@@ -531,8 +531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9a429715a2ce84199d047ec05af8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TextSendDataPar: {fileID: 390588684}
-  m_TextShowData: {fileID: 408951489}
 --- !u!114 &1102702713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +622,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1278095830}
-  - component: {fileID: 1278095831}
   - component: {fileID: 1278095832}
   - component: {fileID: 1278095833}
   m_Layer: 0
@@ -648,18 +645,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1278095831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278095829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6814936ad475dd24c82ae15d135fb572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1278095832
 MonoBehaviour:
   m_ObjectHideFlags: 0
